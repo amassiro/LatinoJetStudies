@@ -44,18 +44,18 @@ void JetResolution(){
  
  for (int ibin = 0; ibin < pt_edges.size(); ibin++) {
 
-//   ((abs(std_vector_jetGen_phi[0]-std_vector_jetGen_phi[0])<3.1416)*abs(std_vector_jetGen_phi[0]-std_vector_jetGen_phi[0]) + (abs(std_vector_jetGen_phi[0]-std_vector_jetGen_phi[0])>3.1416)*(abs(std_vector_jetGen_phi[0]-std_vector_jetGen_phi[0])-3.1416))<0.4   &&  
+//   ((abs(std_vector_jetGen_phi[0]-std_vector_jetGen_phi[0])<3.1416)*abs(std_vector_jetGen_phi[0]-std_vector_jetGen_phi[0]) + (abs(std_vector_jetGen_phi[0]-std_vector_jetGen_phi[0])>3.1416)*(abs(std_vector_jetGen_phi[0]-std_vector_jetGen_phi[0])-3.1416))<0.33   &&  
   TString cut;
   TString cut_standard;
   if (ibin!= (pt_edges.size()-1)) {
-   //    cut  = Form ("abs(std_vector_jetGen_eta[0]-std_vector_jetGen_eta[0])<0.4 && std_vector_jetGen_pt[0]>=0 && std_vector_puppijet_pt[0]>0 && std_vector_jetGen_pt[0]>%f && std_vector_jetGen_pt[0]<=%f", pt_edges.at(ibin), pt_edges.at(ibin+1));
-   cut           = Form ("((abs(std_vector_jetGen_phi[0]-std_vector_puppijet_phi[0])<3.1416)*abs(std_vector_jetGen_phi[0]-std_vector_puppijet_phi[0]) + (abs(std_vector_jetGen_phi[0]-std_vector_puppijet_phi[0])>3.1416)*(abs(std_vector_jetGen_phi[0]-std_vector_puppijet_phi[0])-3.1416))<0.4   &&  abs(std_vector_jetGen_eta[0]-std_vector_puppijet_eta[0])<0.4 && std_vector_jetGen_pt[0]>=0 && std_vector_puppijet_pt[0]>5 && std_vector_jetGen_pt[0]>%f && std_vector_jetGen_pt[0]<=%f", pt_edges.at(ibin), pt_edges.at(ibin+1));
-   cut_standard  = Form ("((abs(std_vector_jetGen_phi[0]-std_vector_jet_phi[0])<3.1416)*abs(std_vector_jetGen_phi[0]-std_vector_jet_phi[0]) + (abs(std_vector_jetGen_phi[0]-std_vector_jet_phi[0])>3.1416)*(abs(std_vector_jetGen_phi[0]-std_vector_jet_phi[0])-3.1416))<0.4   &&  abs(std_vector_jetGen_eta[0]-std_vector_jet_eta[0])<0.4 && std_vector_jetGen_pt[0]>=0 && std_vector_jet_pt[0]>5 && std_vector_jetGen_pt[0]>%f && std_vector_jetGen_pt[0]<=%f", pt_edges.at(ibin), pt_edges.at(ibin+1));
+   //    cut  = Form ("abs(std_vector_jetGen_eta[0]-std_vector_jetGen_eta[0])<0.33 && std_vector_jetGen_pt[0]>=0 && std_vector_puppijet_pt[0]>0 && std_vector_jetGen_pt[0]>%f && std_vector_jetGen_pt[0]<=%f", pt_edges.at(ibin), pt_edges.at(ibin+1));
+   cut           = Form ("((abs(std_vector_jetGen_phi[0]-std_vector_puppijet_phi[0])<3.1416)*abs(std_vector_jetGen_phi[0]-std_vector_puppijet_phi[0]) + (abs(std_vector_jetGen_phi[0]-std_vector_puppijet_phi[0])>3.1416)*(abs(std_vector_jetGen_phi[0]-std_vector_puppijet_phi[0])-3.1416))<0.33   &&  abs(std_vector_jetGen_eta[0]-std_vector_puppijet_eta[0])<0.33 && std_vector_jetGen_pt[0]>=0 && std_vector_puppijet_pt[0]>5 && std_vector_jetGen_pt[0]>%f && std_vector_jetGen_pt[0]<=%f", pt_edges.at(ibin), pt_edges.at(ibin+1));
+   cut_standard  = Form ("((abs(std_vector_jetGen_phi[0]-std_vector_jet_phi[0])<3.1416)*abs(std_vector_jetGen_phi[0]-std_vector_jet_phi[0]) + (abs(std_vector_jetGen_phi[0]-std_vector_jet_phi[0])>3.1416)*(abs(std_vector_jetGen_phi[0]-std_vector_jet_phi[0])-3.1416))<0.33   &&  abs(std_vector_jetGen_eta[0]-std_vector_jet_eta[0])<0.33 && std_vector_jetGen_pt[0]>=0 && std_vector_jet_pt[0]>5 && std_vector_jetGen_pt[0]>%f && std_vector_jetGen_pt[0]<=%f", pt_edges.at(ibin), pt_edges.at(ibin+1));
   }
   else {
-   //    cut  = Form ("abs(std_vector_jetGen_eta[0]-std_vector_jetGen_eta[0])<0.4 && std_vector_jetGen_pt[0]>=0 && std_vector_puppijet_pt[0]>0 && std_vector_jetGen_pt[0]>%f", pt_edges.at(ibin));
-   cut           = Form ("((abs(std_vector_jetGen_phi[0]-std_vector_puppijet_phi[0])<3.1416)*abs(std_vector_jetGen_phi[0]-std_vector_puppijet_phi[0]) + (abs(std_vector_jetGen_phi[0]-std_vector_puppijet_phi[0])>3.1416)*(abs(std_vector_jetGen_phi[0]-std_vector_puppijet_phi[0])-3.1416))<0.4   &&  abs(std_vector_jetGen_eta[0]-std_vector_puppijet_eta[0])<0.4 && std_vector_jetGen_pt[0]>=0 && std_vector_puppijet_pt[0]>5 && std_vector_jetGen_pt[0]>%f ", pt_edges.at(ibin));
-   cut_standard  = Form ("((abs(std_vector_jetGen_phi[0]-std_vector_jet_phi[0])<3.1416)*abs(std_vector_jetGen_phi[0]-std_vector_jet_phi[0]) + (abs(std_vector_jetGen_phi[0]-std_vector_jet_phi[0])>3.1416)*(abs(std_vector_jetGen_phi[0]-std_vector_jet_phi[0])-3.1416))<0.4   &&  abs(std_vector_jetGen_eta[0]-std_vector_jet_eta[0])<0.4 && std_vector_jetGen_pt[0]>=0 && std_vector_jet_pt[0]>5 && std_vector_jetGen_pt[0]>%f ", pt_edges.at(ibin));
+   //    cut  = Form ("abs(std_vector_jetGen_eta[0]-std_vector_jetGen_eta[0])<0.33 && std_vector_jetGen_pt[0]>=0 && std_vector_puppijet_pt[0]>0 && std_vector_jetGen_pt[0]>%f", pt_edges.at(ibin));
+   cut           = Form ("((abs(std_vector_jetGen_phi[0]-std_vector_puppijet_phi[0])<3.1416)*abs(std_vector_jetGen_phi[0]-std_vector_puppijet_phi[0]) + (abs(std_vector_jetGen_phi[0]-std_vector_puppijet_phi[0])>3.1416)*(abs(std_vector_jetGen_phi[0]-std_vector_puppijet_phi[0])-3.1416))<0.33   &&  abs(std_vector_jetGen_eta[0]-std_vector_puppijet_eta[0])<0.33 && std_vector_jetGen_pt[0]>=0 && std_vector_puppijet_pt[0]>5 && std_vector_jetGen_pt[0]>%f ", pt_edges.at(ibin));
+   cut_standard  = Form ("((abs(std_vector_jetGen_phi[0]-std_vector_jet_phi[0])<3.1416)*abs(std_vector_jetGen_phi[0]-std_vector_jet_phi[0]) + (abs(std_vector_jetGen_phi[0]-std_vector_jet_phi[0])>3.1416)*(abs(std_vector_jetGen_phi[0]-std_vector_jet_phi[0])-3.1416))<0.33   &&  abs(std_vector_jetGen_eta[0]-std_vector_jet_eta[0])<0.33 && std_vector_jetGen_pt[0]>=0 && std_vector_jet_pt[0]>5 && std_vector_jetGen_pt[0]>%f ", pt_edges.at(ibin));
   }
   
   TString name = Form ("histo_%d",ibin);
@@ -63,8 +63,9 @@ void JetResolution(){
   TString nameToDraw = Form ("std_vector_puppijet_pt[0] / std_vector_jetGen_pt[0] >> histo_%d",ibin);
   latino->Draw(nameToDraw.Data(), cut.Data(), "goff");
   name = Form ("fit_histo_%d",ibin);
-  if (ibin <= 1) fit_histo[ibin] = new TF1 (name.Data(),"gaus(0)+pol2(3)",0.2,3.0);
-  else           fit_histo[ibin] = new TF1 (name.Data(),"gaus(0)+pol2(3)",0.2,1.5);
+  if      (ibin <= 1) fit_histo[ibin] = new TF1 (name.Data(),"gaus(0)+pol2(3)",0.2,3.0);
+  else if (ibin == 3) fit_histo[ibin] = new TF1 (name.Data(),"gaus(0)+pol2(3)",0.3,1.4);
+  else                fit_histo[ibin] = new TF1 (name.Data(),"gaus(0)+pol2(3)",0.2,1.5);
   fit_histo[ibin]->SetParameter(1,1.0);
   fit_histo[ibin]->SetParameter(2,0.5);
   
@@ -73,8 +74,10 @@ void JetResolution(){
   nameToDraw = Form ("std_vector_jet_pt[0] / std_vector_jetGen_pt[0] >> histo_standard_%d",ibin);
   latino->Draw(nameToDraw.Data(), cut_standard.Data(), "goff");
   name = Form ("fit_histo_standard_%d",ibin);
-  if (ibin <= 1) fit_histo_standard[ibin] = new TF1 (name.Data(),"gaus+pol2(3)",0.2,3.0);
-  else           fit_histo_standard[ibin] = new TF1 (name.Data(),"gaus+pol2(3)",0.2,1.5);
+  if      (ibin <= 1) fit_histo_standard[ibin] = new TF1 (name.Data(),"gaus+pol2(3)",0.2,3.0);
+  else if (ibin == 2) fit_histo_standard[ibin] = new TF1 (name.Data(),"gaus(0)+pol2(3)",0.5,1.7);
+  else if (ibin == 3) fit_histo_standard[ibin] = new TF1 (name.Data(),"gaus(0)+pol2(3)",0.3,1.4);
+  else                fit_histo_standard[ibin] = new TF1 (name.Data(),"gaus+pol2(3)",0.2,1.5);
   fit_histo_standard[ibin]->SetParameter(1,1.0);
   fit_histo_standard[ibin]->SetParameter(2,0.5);
   
@@ -83,14 +86,14 @@ void JetResolution(){
   
   
   if (ibin!= (pt_edges.size()-1)) {
-   //    cut  = Form ("abs(std_vector_jetGen_eta[1]-std_vector_jetGen_eta[1])<0.4 && std_vector_jetGen_pt[1]>=0 && std_vector_puppijet_pt[1]>0 && std_vector_jetGen_pt[1]>%f && std_vector_jetGen_pt[1]<=%f", pt_edges.at(ibin), pt_edges.at(ibin+1));
-   cut           = Form ("((abs(std_vector_jetGen_phi[1]-std_vector_puppijet_phi[1])<3.1416)*abs(std_vector_jetGen_phi[1]-std_vector_puppijet_phi[1]) + (abs(std_vector_jetGen_phi[1]-std_vector_puppijet_phi[1])>3.1416)*(abs(std_vector_jetGen_phi[1]-std_vector_puppijet_phi[1])-3.1416))<0.4   &&  abs(std_vector_jetGen_eta[1]-std_vector_puppijet_eta[1])<0.4 && std_vector_jetGen_pt[1]>=0 && std_vector_puppijet_pt[1]>5 && std_vector_jetGen_pt[1]>%f && std_vector_jetGen_pt[1]<=%f", pt_edges.at(ibin), pt_edges.at(ibin+1));
-   cut_standard  = Form ("((abs(std_vector_jetGen_phi[1]-std_vector_jet_phi[1])<3.1416)*abs(std_vector_jetGen_phi[1]-std_vector_jet_phi[1]) + (abs(std_vector_jetGen_phi[1]-std_vector_jet_phi[1])>3.1416)*(abs(std_vector_jetGen_phi[1]-std_vector_jet_phi[1])-3.1416))<0.4   &&  abs(std_vector_jetGen_eta[1]-std_vector_jet_eta[1])<0.4 && std_vector_jetGen_pt[1]>=0 && std_vector_jet_pt[1]>5 && std_vector_jetGen_pt[1]>%f && std_vector_jetGen_pt[1]<=%f", pt_edges.at(ibin), pt_edges.at(ibin+1));
+   //    cut  = Form ("abs(std_vector_jetGen_eta[1]-std_vector_jetGen_eta[1])<0.33 && std_vector_jetGen_pt[1]>=0 && std_vector_puppijet_pt[1]>0 && std_vector_jetGen_pt[1]>%f && std_vector_jetGen_pt[1]<=%f", pt_edges.at(ibin), pt_edges.at(ibin+1));
+   cut           = Form ("((abs(std_vector_jetGen_phi[1]-std_vector_puppijet_phi[1])<3.1416)*abs(std_vector_jetGen_phi[1]-std_vector_puppijet_phi[1]) + (abs(std_vector_jetGen_phi[1]-std_vector_puppijet_phi[1])>3.1416)*(abs(std_vector_jetGen_phi[1]-std_vector_puppijet_phi[1])-3.1416))<0.33   &&  abs(std_vector_jetGen_eta[1]-std_vector_puppijet_eta[1])<0.33 && std_vector_jetGen_pt[1]>=0 && std_vector_puppijet_pt[1]>5 && std_vector_jetGen_pt[1]>%f && std_vector_jetGen_pt[1]<=%f", pt_edges.at(ibin), pt_edges.at(ibin+1));
+   cut_standard  = Form ("((abs(std_vector_jetGen_phi[1]-std_vector_jet_phi[1])<3.1416)*abs(std_vector_jetGen_phi[1]-std_vector_jet_phi[1]) + (abs(std_vector_jetGen_phi[1]-std_vector_jet_phi[1])>3.1416)*(abs(std_vector_jetGen_phi[1]-std_vector_jet_phi[1])-3.1416))<0.33   &&  abs(std_vector_jetGen_eta[1]-std_vector_jet_eta[1])<0.33 && std_vector_jetGen_pt[1]>=0 && std_vector_jet_pt[1]>5 && std_vector_jetGen_pt[1]>%f && std_vector_jetGen_pt[1]<=%f", pt_edges.at(ibin), pt_edges.at(ibin+1));
   }
   else {
-   //    cut  = Form ("abs(std_vector_jetGen_eta[1]-std_vector_jetGen_eta[1])<0.4 && std_vector_jetGen_pt[1]>=0 && std_vector_puppijet_pt[1]>0 && std_vector_jetGen_pt[1]>%f", pt_edges.at(ibin));
-   cut           = Form ("((abs(std_vector_jetGen_phi[1]-std_vector_puppijet_phi[1])<3.1416)*abs(std_vector_jetGen_phi[1]-std_vector_puppijet_phi[1]) + (abs(std_vector_jetGen_phi[1]-std_vector_puppijet_phi[1])>3.1416)*(abs(std_vector_jetGen_phi[1]-std_vector_puppijet_phi[1])-3.1416))<0.4   &&  abs(std_vector_jetGen_eta[1]-std_vector_puppijet_eta[1])<0.4 && std_vector_jetGen_pt[1]>=0 && std_vector_puppijet_pt[1]>5 && std_vector_jetGen_pt[1]>%f ", pt_edges.at(ibin));
-   cut_standard  = Form ("((abs(std_vector_jetGen_phi[1]-std_vector_jet_phi[1])<3.1416)*abs(std_vector_jetGen_phi[1]-std_vector_jet_phi[1]) + (abs(std_vector_jetGen_phi[1]-std_vector_jet_phi[1])>3.1416)*(abs(std_vector_jetGen_phi[1]-std_vector_jet_phi[1])-3.1416))<0.4   &&  abs(std_vector_jetGen_eta[1]-std_vector_jet_eta[1])<0.4 && std_vector_jetGen_pt[1]>=0 && std_vector_jet_pt[1]>5 && std_vector_jetGen_pt[1]>%f ", pt_edges.at(ibin));
+   //    cut  = Form ("abs(std_vector_jetGen_eta[1]-std_vector_jetGen_eta[1])<0.33 && std_vector_jetGen_pt[1]>=0 && std_vector_puppijet_pt[1]>0 && std_vector_jetGen_pt[1]>%f", pt_edges.at(ibin));
+   cut           = Form ("((abs(std_vector_jetGen_phi[1]-std_vector_puppijet_phi[1])<3.1416)*abs(std_vector_jetGen_phi[1]-std_vector_puppijet_phi[1]) + (abs(std_vector_jetGen_phi[1]-std_vector_puppijet_phi[1])>3.1416)*(abs(std_vector_jetGen_phi[1]-std_vector_puppijet_phi[1])-3.1416))<0.33   &&  abs(std_vector_jetGen_eta[1]-std_vector_puppijet_eta[1])<0.33 && std_vector_jetGen_pt[1]>=0 && std_vector_puppijet_pt[1]>5 && std_vector_jetGen_pt[1]>%f ", pt_edges.at(ibin));
+   cut_standard  = Form ("((abs(std_vector_jetGen_phi[1]-std_vector_jet_phi[1])<3.1416)*abs(std_vector_jetGen_phi[1]-std_vector_jet_phi[1]) + (abs(std_vector_jetGen_phi[1]-std_vector_jet_phi[1])>3.1416)*(abs(std_vector_jetGen_phi[1]-std_vector_jet_phi[1])-3.1416))<0.33   &&  abs(std_vector_jetGen_eta[1]-std_vector_jet_eta[1])<0.33 && std_vector_jetGen_pt[1]>=0 && std_vector_jet_pt[1]>5 && std_vector_jetGen_pt[1]>%f ", pt_edges.at(ibin));
   }
   
   //---- append to previous histogram
@@ -105,14 +108,14 @@ void JetResolution(){
   
   
   if (ibin!= (pt_edges.size()-1)) {
-   //    cut  = Form ("abs(std_vector_jetGen_eta[2]-std_vector_jetGen_eta[2])<0.4 && std_vector_jetGen_pt[2]>=0 && std_vector_puppijet_pt[2]>0 && std_vector_jetGen_pt[2]>%f && std_vector_jetGen_pt[2]<=%f", pt_edges.at(ibin), pt_edges.at(ibin+1));
-   cut           = Form ("((abs(std_vector_jetGen_phi[2]-std_vector_puppijet_phi[2])<3.1416)*abs(std_vector_jetGen_phi[2]-std_vector_puppijet_phi[2]) + (abs(std_vector_jetGen_phi[2]-std_vector_puppijet_phi[2])>3.1416)*(abs(std_vector_jetGen_phi[2]-std_vector_puppijet_phi[2])-3.1416))<0.4   &&  abs(std_vector_jetGen_eta[2]-std_vector_puppijet_eta[2])<0.4 && std_vector_jetGen_pt[2]>=0 && std_vector_puppijet_pt[2]>5 && std_vector_jetGen_pt[2]>%f && std_vector_jetGen_pt[2]<=%f", pt_edges.at(ibin), pt_edges.at(ibin+1));
-   cut_standard  = Form ("((abs(std_vector_jetGen_phi[2]-std_vector_jet_phi[2])<3.1416)*abs(std_vector_jetGen_phi[2]-std_vector_jet_phi[2]) + (abs(std_vector_jetGen_phi[2]-std_vector_jet_phi[2])>3.1416)*(abs(std_vector_jetGen_phi[2]-std_vector_jet_phi[2])-3.1416))<0.4   &&  abs(std_vector_jetGen_eta[2]-std_vector_jet_eta[2])<0.4 && std_vector_jetGen_pt[2]>=0 && std_vector_jet_pt[2]>5 && std_vector_jetGen_pt[2]>%f && std_vector_jetGen_pt[2]<=%f", pt_edges.at(ibin), pt_edges.at(ibin+1));
+   //    cut  = Form ("abs(std_vector_jetGen_eta[2]-std_vector_jetGen_eta[2])<0.33 && std_vector_jetGen_pt[2]>=0 && std_vector_puppijet_pt[2]>0 && std_vector_jetGen_pt[2]>%f && std_vector_jetGen_pt[2]<=%f", pt_edges.at(ibin), pt_edges.at(ibin+1));
+   cut           = Form ("((abs(std_vector_jetGen_phi[2]-std_vector_puppijet_phi[2])<3.1416)*abs(std_vector_jetGen_phi[2]-std_vector_puppijet_phi[2]) + (abs(std_vector_jetGen_phi[2]-std_vector_puppijet_phi[2])>3.1416)*(abs(std_vector_jetGen_phi[2]-std_vector_puppijet_phi[2])-3.1416))<0.33   &&  abs(std_vector_jetGen_eta[2]-std_vector_puppijet_eta[2])<0.33 && std_vector_jetGen_pt[2]>=0 && std_vector_puppijet_pt[2]>5 && std_vector_jetGen_pt[2]>%f && std_vector_jetGen_pt[2]<=%f", pt_edges.at(ibin), pt_edges.at(ibin+1));
+   cut_standard  = Form ("((abs(std_vector_jetGen_phi[2]-std_vector_jet_phi[2])<3.1416)*abs(std_vector_jetGen_phi[2]-std_vector_jet_phi[2]) + (abs(std_vector_jetGen_phi[2]-std_vector_jet_phi[2])>3.1416)*(abs(std_vector_jetGen_phi[2]-std_vector_jet_phi[2])-3.1416))<0.33   &&  abs(std_vector_jetGen_eta[2]-std_vector_jet_eta[2])<0.33 && std_vector_jetGen_pt[2]>=0 && std_vector_jet_pt[2]>5 && std_vector_jetGen_pt[2]>%f && std_vector_jetGen_pt[2]<=%f", pt_edges.at(ibin), pt_edges.at(ibin+1));
   }
   else {
-   //    cut  = Form ("abs(std_vector_jetGen_eta[2]-std_vector_jetGen_eta[2])<0.4 && std_vector_jetGen_pt[2]>=0 && std_vector_puppijet_pt[2]>0 && std_vector_jetGen_pt[2]>%f", pt_edges.at(ibin));
-   cut           = Form ("((abs(std_vector_jetGen_phi[2]-std_vector_puppijet_phi[2])<3.1416)*abs(std_vector_jetGen_phi[2]-std_vector_puppijet_phi[2]) + (abs(std_vector_jetGen_phi[2]-std_vector_puppijet_phi[2])>3.1416)*(abs(std_vector_jetGen_phi[2]-std_vector_puppijet_phi[2])-3.1416))<0.4   &&  abs(std_vector_jetGen_eta[2]-std_vector_puppijet_eta[2])<0.4 && std_vector_jetGen_pt[2]>=0 && std_vector_puppijet_pt[2]>5 && std_vector_jetGen_pt[2]>%f ", pt_edges.at(ibin));
-   cut_standard  = Form ("((abs(std_vector_jetGen_phi[2]-std_vector_jet_phi[2])<3.1416)*abs(std_vector_jetGen_phi[2]-std_vector_jet_phi[2]) + (abs(std_vector_jetGen_phi[2]-std_vector_jet_phi[2])>3.1416)*(abs(std_vector_jetGen_phi[2]-std_vector_jet_phi[2])-3.1416))<0.4   &&  abs(std_vector_jetGen_eta[2]-std_vector_jet_eta[2])<0.4 && std_vector_jetGen_pt[2]>=0 && std_vector_jet_pt[2]>5 && std_vector_jetGen_pt[2]>%f ", pt_edges.at(ibin));
+   //    cut  = Form ("abs(std_vector_jetGen_eta[2]-std_vector_jetGen_eta[2])<0.33 && std_vector_jetGen_pt[2]>=0 && std_vector_puppijet_pt[2]>0 && std_vector_jetGen_pt[2]>%f", pt_edges.at(ibin));
+   cut           = Form ("((abs(std_vector_jetGen_phi[2]-std_vector_puppijet_phi[2])<3.1416)*abs(std_vector_jetGen_phi[2]-std_vector_puppijet_phi[2]) + (abs(std_vector_jetGen_phi[2]-std_vector_puppijet_phi[2])>3.1416)*(abs(std_vector_jetGen_phi[2]-std_vector_puppijet_phi[2])-3.1416))<0.33   &&  abs(std_vector_jetGen_eta[2]-std_vector_puppijet_eta[2])<0.33 && std_vector_jetGen_pt[2]>=0 && std_vector_puppijet_pt[2]>5 && std_vector_jetGen_pt[2]>%f ", pt_edges.at(ibin));
+   cut_standard  = Form ("((abs(std_vector_jetGen_phi[2]-std_vector_jet_phi[2])<3.1416)*abs(std_vector_jetGen_phi[2]-std_vector_jet_phi[2]) + (abs(std_vector_jetGen_phi[2]-std_vector_jet_phi[2])>3.1416)*(abs(std_vector_jetGen_phi[2]-std_vector_jet_phi[2])-3.1416))<0.33   &&  abs(std_vector_jetGen_eta[2]-std_vector_jet_eta[2])<0.33 && std_vector_jetGen_pt[2]>=0 && std_vector_jet_pt[2]>5 && std_vector_jetGen_pt[2]>%f ", pt_edges.at(ibin));
   }
   
   //---- append to previous histogram
@@ -126,14 +129,14 @@ void JetResolution(){
   
   
   if (ibin!= (pt_edges.size()-1)) {
-   //    cut  = Form ("abs(std_vector_jetGen_eta[3]-std_vector_jetGen_eta[3])<0.4 && std_vector_jetGen_pt[3]>=0 && std_vector_puppijet_pt[3]>0 && std_vector_jetGen_pt[3]>%f && std_vector_jetGen_pt[3]<=%f", pt_edges.at(ibin), pt_edges.at(ibin+1));
-   cut           = Form ("((abs(std_vector_jetGen_phi[3]-std_vector_puppijet_phi[3])<3.1416)*abs(std_vector_jetGen_phi[3]-std_vector_puppijet_phi[3]) + (abs(std_vector_jetGen_phi[3]-std_vector_puppijet_phi[3])>3.1416)*(abs(std_vector_jetGen_phi[3]-std_vector_puppijet_phi[3])-3.1416))<0.4   &&  abs(std_vector_jetGen_eta[3]-std_vector_puppijet_eta[3])<0.4 && std_vector_jetGen_pt[3]>=0 && std_vector_puppijet_pt[3]>5 && std_vector_jetGen_pt[3]>%f && std_vector_jetGen_pt[3]<=%f", pt_edges.at(ibin), pt_edges.at(ibin+1));
-   cut_standard  = Form ("((abs(std_vector_jetGen_phi[3]-std_vector_jet_phi[3])<3.1416)*abs(std_vector_jetGen_phi[3]-std_vector_jet_phi[3]) + (abs(std_vector_jetGen_phi[3]-std_vector_jet_phi[3])>3.1416)*(abs(std_vector_jetGen_phi[3]-std_vector_jet_phi[3])-3.1416))<0.4   &&  abs(std_vector_jetGen_eta[3]-std_vector_jet_eta[3])<0.4 && std_vector_jetGen_pt[3]>=0 && std_vector_jet_pt[3]>5 && std_vector_jetGen_pt[3]>%f && std_vector_jetGen_pt[3]<=%f", pt_edges.at(ibin), pt_edges.at(ibin+1));
+   //    cut  = Form ("abs(std_vector_jetGen_eta[3]-std_vector_jetGen_eta[3])<0.33 && std_vector_jetGen_pt[3]>=0 && std_vector_puppijet_pt[3]>0 && std_vector_jetGen_pt[3]>%f && std_vector_jetGen_pt[3]<=%f", pt_edges.at(ibin), pt_edges.at(ibin+1));
+   cut           = Form ("((abs(std_vector_jetGen_phi[3]-std_vector_puppijet_phi[3])<3.1416)*abs(std_vector_jetGen_phi[3]-std_vector_puppijet_phi[3]) + (abs(std_vector_jetGen_phi[3]-std_vector_puppijet_phi[3])>3.1416)*(abs(std_vector_jetGen_phi[3]-std_vector_puppijet_phi[3])-3.1416))<0.33   &&  abs(std_vector_jetGen_eta[3]-std_vector_puppijet_eta[3])<0.33 && std_vector_jetGen_pt[3]>=0 && std_vector_puppijet_pt[3]>5 && std_vector_jetGen_pt[3]>%f && std_vector_jetGen_pt[3]<=%f", pt_edges.at(ibin), pt_edges.at(ibin+1));
+   cut_standard  = Form ("((abs(std_vector_jetGen_phi[3]-std_vector_jet_phi[3])<3.1416)*abs(std_vector_jetGen_phi[3]-std_vector_jet_phi[3]) + (abs(std_vector_jetGen_phi[3]-std_vector_jet_phi[3])>3.1416)*(abs(std_vector_jetGen_phi[3]-std_vector_jet_phi[3])-3.1416))<0.33   &&  abs(std_vector_jetGen_eta[3]-std_vector_jet_eta[3])<0.33 && std_vector_jetGen_pt[3]>=0 && std_vector_jet_pt[3]>5 && std_vector_jetGen_pt[3]>%f && std_vector_jetGen_pt[3]<=%f", pt_edges.at(ibin), pt_edges.at(ibin+1));
   }
   else {
-   //    cut  = Form ("abs(std_vector_jetGen_eta[3]-std_vector_jetGen_eta[3])<0.4 && std_vector_jetGen_pt[3]>=0 && std_vector_puppijet_pt[3]>0 && std_vector_jetGen_pt[3]>%f", pt_edges.at(ibin));
-   cut           = Form ("((abs(std_vector_jetGen_phi[3]-std_vector_puppijet_phi[3])<3.1416)*abs(std_vector_jetGen_phi[3]-std_vector_puppijet_phi[3]) + (abs(std_vector_jetGen_phi[3]-std_vector_puppijet_phi[3])>3.1416)*(abs(std_vector_jetGen_phi[3]-std_vector_puppijet_phi[3])-3.1416))<0.4   &&  abs(std_vector_jetGen_eta[3]-std_vector_puppijet_eta[3])<0.4 && std_vector_jetGen_pt[3]>=0 && std_vector_puppijet_pt[3]>5 && std_vector_jetGen_pt[3]>%f ", pt_edges.at(ibin));
-   cut_standard  = Form ("((abs(std_vector_jetGen_phi[3]-std_vector_jet_phi[3])<3.1416)*abs(std_vector_jetGen_phi[3]-std_vector_jet_phi[3]) + (abs(std_vector_jetGen_phi[3]-std_vector_jet_phi[3])>3.1416)*(abs(std_vector_jetGen_phi[3]-std_vector_jet_phi[3])-3.1416))<0.4   &&  abs(std_vector_jetGen_eta[3]-std_vector_jet_eta[3])<0.4 && std_vector_jetGen_pt[3]>=0 && std_vector_jet_pt[3]>5 && std_vector_jetGen_pt[3]>%f ", pt_edges.at(ibin));
+   //    cut  = Form ("abs(std_vector_jetGen_eta[3]-std_vector_jetGen_eta[3])<0.33 && std_vector_jetGen_pt[3]>=0 && std_vector_puppijet_pt[3]>0 && std_vector_jetGen_pt[3]>%f", pt_edges.at(ibin));
+   cut           = Form ("((abs(std_vector_jetGen_phi[3]-std_vector_puppijet_phi[3])<3.1416)*abs(std_vector_jetGen_phi[3]-std_vector_puppijet_phi[3]) + (abs(std_vector_jetGen_phi[3]-std_vector_puppijet_phi[3])>3.1416)*(abs(std_vector_jetGen_phi[3]-std_vector_puppijet_phi[3])-3.1416))<0.33   &&  abs(std_vector_jetGen_eta[3]-std_vector_puppijet_eta[3])<0.33 && std_vector_jetGen_pt[3]>=0 && std_vector_puppijet_pt[3]>5 && std_vector_jetGen_pt[3]>%f ", pt_edges.at(ibin));
+   cut_standard  = Form ("((abs(std_vector_jetGen_phi[3]-std_vector_jet_phi[3])<3.1416)*abs(std_vector_jetGen_phi[3]-std_vector_jet_phi[3]) + (abs(std_vector_jetGen_phi[3]-std_vector_jet_phi[3])>3.1416)*(abs(std_vector_jetGen_phi[3]-std_vector_jet_phi[3])-3.1416))<0.33   &&  abs(std_vector_jetGen_eta[3]-std_vector_jet_eta[3])<0.33 && std_vector_jetGen_pt[3]>=0 && std_vector_jet_pt[3]>5 && std_vector_jetGen_pt[3]>%f ", pt_edges.at(ibin));
   }
   
   //---- append to previous histogram
@@ -160,8 +163,8 @@ void JetResolution(){
  }
  
  
- TGraphErrors* gr_response = new TGraphErrors();
- TGraphErrors* gr_response_fit = new TGraphErrors();
+ TGraphErrors* gr_response = new TGraphErrors();     gr_response->SetTitle("puppi");
+ TGraphErrors* gr_response_fit = new TGraphErrors(); gr_response_fit->SetTitle("puppi");
  for (int ibin = 0; ibin < pt_edges.size(); ibin++) {
   float x;
   float delta;
@@ -180,14 +183,16 @@ void JetResolution(){
 //   std::cout << " delta = " << delta << std::endl;
   
   gr_response_fit->SetPoint      (ibin, x, fit_histo[ibin]->GetParameter(1));
-  gr_response_fit->SetPointError (ibin, delta, fit_histo[ibin]->GetParameter(2));
+  gr_response_fit->SetPointError (ibin, delta, fabs(fit_histo[ibin]->GetParameter(2)));
  }
  
+ gr_response->SetFillColor(0);
  gr_response->SetMarkerSize(1);
  gr_response->SetMarkerStyle(22);
  gr_response->SetMarkerColor(kRed);
  gr_response->SetLineColor(kRed);
 
+ gr_response_fit->SetFillColor(0);
  gr_response_fit->SetMarkerSize(1);
  gr_response_fit->SetMarkerStyle(24);
  gr_response_fit->SetMarkerColor(kRed);
@@ -196,8 +201,8 @@ void JetResolution(){
 
 
  
- TGraphErrors* gr_response_standard = new TGraphErrors();
- TGraphErrors* gr_response_standard_fit = new TGraphErrors();
+ TGraphErrors* gr_response_standard = new TGraphErrors();     gr_response_standard->SetTitle("standard");
+ TGraphErrors* gr_response_standard_fit = new TGraphErrors(); gr_response_standard_fit->SetTitle("standard");
  for (int ibin = 0; ibin < pt_edges.size(); ibin++) {
   float x;
   float delta;
@@ -216,14 +221,16 @@ void JetResolution(){
   //   std::cout << " delta = " << delta << std::endl;
   
   gr_response_standard_fit->SetPoint      (ibin, x, fit_histo_standard[ibin]->GetParameter(1));
-  gr_response_standard_fit->SetPointError (ibin, delta, fit_histo_standard[ibin]->GetParameter(2));
+  gr_response_standard_fit->SetPointError (ibin, delta, fabs(fit_histo_standard[ibin]->GetParameter(2)));
  }
  
+ gr_response_standard->SetFillColor(0);
  gr_response_standard->SetMarkerSize(1);
  gr_response_standard->SetMarkerStyle(22);
  gr_response_standard->SetMarkerColor(kBlue);
  gr_response_standard->SetLineColor(kBlue);
  
+ gr_response_standard_fit->SetFillColor(0);
  gr_response_standard_fit->SetMarkerSize(1);
  gr_response_standard_fit->SetMarkerStyle(24);
  gr_response_standard_fit->SetMarkerColor(kBlue);
@@ -238,6 +245,7 @@ void JetResolution(){
  gr_response->GetYaxis()->SetTitle("jet p_{T} / gen jet p_{T}");
  gr_response_standard->Draw("P");
  ccResult->SetGrid();
+ ccResult->BuildLegend();
  
  
  TCanvas* ccResult_fit = new TCanvas ("ccResult_fit","Response fit",800,800);
@@ -246,6 +254,7 @@ void JetResolution(){
  gr_response_fit->GetYaxis()->SetTitle("jet p_{T} / gen jet p_{T}");
  gr_response_standard_fit->Draw("P");
  ccResult_fit->SetGrid();
+ ccResult_fit->BuildLegend();
  
  
  
@@ -255,8 +264,8 @@ void JetResolution(){
  
  //---- resolution
  
- TGraphErrors* gr_resolution = new TGraphErrors();
- TGraphErrors* gr_resolution_fit = new TGraphErrors();
+ TGraphErrors* gr_resolution = new TGraphErrors();     gr_resolution->SetTitle("puppi");
+ TGraphErrors* gr_resolution_fit = new TGraphErrors(); gr_resolution_fit->SetTitle("puppi");
  for (int ibin = 0; ibin < pt_edges.size(); ibin++) {
   float x;
   float delta;
@@ -274,15 +283,17 @@ void JetResolution(){
   gr_resolution->SetPointError (ibin, delta, 0);
   //   std::cout << " delta = " << delta << std::endl;
   
-  gr_resolution_fit->SetPoint      (ibin, x, fit_histo[ibin]->GetParameter(2) / fit_histo[ibin]->GetParameter(1));
+  gr_resolution_fit->SetPoint      (ibin, x, fabs(fit_histo[ibin]->GetParameter(2)) / fit_histo[ibin]->GetParameter(1));
   gr_resolution_fit->SetPointError (ibin, delta, 0.);
  }
  
+ gr_resolution->SetFillColor(0);
  gr_resolution->SetMarkerSize(1);
  gr_resolution->SetMarkerStyle(22);
  gr_resolution->SetMarkerColor(kRed);
  gr_resolution->SetLineColor(kRed);
  
+ gr_resolution_fit->SetFillColor(0);
  gr_resolution_fit->SetMarkerSize(1);
  gr_resolution_fit->SetMarkerStyle(24);
  gr_resolution_fit->SetMarkerColor(kRed);
@@ -291,8 +302,8 @@ void JetResolution(){
  
  
  
- TGraphErrors* gr_resolution_standard = new TGraphErrors();
- TGraphErrors* gr_resolution_standard_fit = new TGraphErrors();
+ TGraphErrors* gr_resolution_standard = new TGraphErrors();      gr_resolution_standard->SetTitle("standard");
+ TGraphErrors* gr_resolution_standard_fit = new TGraphErrors();  gr_resolution_standard_fit->SetTitle("standard");
  for (int ibin = 0; ibin < pt_edges.size(); ibin++) {
   float x;
   float delta;
@@ -310,15 +321,17 @@ void JetResolution(){
   gr_resolution_standard->SetPointError (ibin, delta, 0);
   //   std::cout << " delta = " << delta << std::endl;
   
-  gr_resolution_standard_fit->SetPoint      (ibin, x, fit_histo_standard[ibin]->GetParameter(2) / fit_histo_standard[ibin]->GetParameter(1));
+  gr_resolution_standard_fit->SetPoint      (ibin, x, fabs(fit_histo_standard[ibin]->GetParameter(2)) / fit_histo_standard[ibin]->GetParameter(1));
   gr_resolution_standard_fit->SetPointError (ibin, delta, 0.);
  }
  
+ gr_resolution_standard->SetFillColor(0);
  gr_resolution_standard->SetMarkerSize(1);
  gr_resolution_standard->SetMarkerStyle(22);
  gr_resolution_standard->SetMarkerColor(kBlue);
  gr_resolution_standard->SetLineColor(kBlue);
  
+ gr_resolution_standard_fit->SetFillColor(0);
  gr_resolution_standard_fit->SetMarkerSize(1);
  gr_resolution_standard_fit->SetMarkerStyle(24);
  gr_resolution_standard_fit->SetMarkerColor(kBlue);
@@ -332,16 +345,16 @@ void JetResolution(){
  gr_resolution->GetYaxis()->SetTitle("resolution jet p_{T} / gen jet p_{T}");
  gr_resolution_standard->Draw("P");
  ccResult_resolution->SetGrid();
- 
+ ccResult_resolution->BuildLegend();
  
  
  TCanvas* ccResult_resolution_fit = new TCanvas ("ccResult_resolution_fit","Resolution",800,800);
  gr_resolution_fit->Draw("AP");
  gr_resolution_fit->GetXaxis()->SetTitle("gen jet p_{T}");
- gr_resolution_fit->GetYaxis()->SetTitle("resolution_fit jet p_{T} / gen jet p_{T}");
+ gr_resolution_fit->GetYaxis()->SetTitle("resolution fit jet p_{T} / gen jet p_{T}");
  gr_resolution_standard_fit->Draw("P");
  ccResult_resolution_fit->SetGrid();
- 
+ ccResult_resolution_fit->BuildLegend(); 
  
  
 }
