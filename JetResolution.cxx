@@ -254,6 +254,7 @@ void JetResolution(){
  gr_response_fit->GetYaxis()->SetTitle("jet p_{T} / gen jet p_{T}");
  gr_response_standard_fit->Draw("P");
  ccResult_fit->SetGrid();
+ ccResult_fit->SetLogx();
  ccResult_fit->BuildLegend();
  
  
@@ -354,6 +355,7 @@ void JetResolution(){
  gr_resolution_fit->GetYaxis()->SetTitle("resolution fit jet p_{T} / gen jet p_{T}");
  gr_resolution_standard_fit->Draw("P");
  ccResult_resolution_fit->SetGrid();
+ ccResult_resolution_fit->SetLogx();
  ccResult_resolution_fit->BuildLegend(); 
  
  
