@@ -77,6 +77,32 @@ void JetResolution(){
   
   
   
+  
+  
+  
+  if (ibin!= (pt_edges.size()-1)) {
+   //    cut  = Form ("abs(std_vector_jetGen_eta[2]-std_vector_jetGen_eta[2])<0.4 && std_vector_jetGen_pt[2]>=0 && std_vector_puppijet_pt[2]>0 && std_vector_jetGen_pt[2]>%f && std_vector_jetGen_pt[2]<=%f", pt_edges.at(ibin), pt_edges.at(ibin+1));
+   cut           = Form ("((abs(std_vector_jetGen_phi[2]-std_vector_puppijet_phi[2])<3.1416)*abs(std_vector_jetGen_phi[2]-std_vector_puppijet_phi[2]) + (abs(std_vector_jetGen_phi[2]-std_vector_puppijet_phi[2])>3.1416)*(abs(std_vector_jetGen_phi[2]-std_vector_puppijet_phi[2])-3.1416))<0.4   &&  abs(std_vector_jetGen_eta[2]-std_vector_puppijet_eta[2])<0.4 && std_vector_jetGen_pt[2]>=0 && std_vector_puppijet_pt[2]>5 && std_vector_jetGen_pt[2]>%f && std_vector_jetGen_pt[2]<=%f", pt_edges.at(ibin), pt_edges.at(ibin+1));
+   cut_standard  = Form ("((abs(std_vector_jetGen_phi[2]-std_vector_jet_phi[2])<3.1416)*abs(std_vector_jetGen_phi[2]-std_vector_jet_phi[2]) + (abs(std_vector_jetGen_phi[2]-std_vector_jet_phi[2])>3.1416)*(abs(std_vector_jetGen_phi[2]-std_vector_jet_phi[2])-3.1416))<0.4   &&  abs(std_vector_jetGen_eta[2]-std_vector_jet_eta[2])<0.4 && std_vector_jetGen_pt[2]>=0 && std_vector_jet_pt[2]>5 && std_vector_jetGen_pt[2]>%f && std_vector_jetGen_pt[2]<=%f", pt_edges.at(ibin), pt_edges.at(ibin+1));
+  }
+  else {
+   //    cut  = Form ("abs(std_vector_jetGen_eta[2]-std_vector_jetGen_eta[2])<0.4 && std_vector_jetGen_pt[2]>=0 && std_vector_puppijet_pt[2]>0 && std_vector_jetGen_pt[2]>%f", pt_edges.at(ibin));
+   cut           = Form ("((abs(std_vector_jetGen_phi[2]-std_vector_puppijet_phi[2])<3.1416)*abs(std_vector_jetGen_phi[2]-std_vector_puppijet_phi[2]) + (abs(std_vector_jetGen_phi[2]-std_vector_puppijet_phi[2])>3.1416)*(abs(std_vector_jetGen_phi[2]-std_vector_puppijet_phi[2])-3.1416))<0.4   &&  abs(std_vector_jetGen_eta[2]-std_vector_puppijet_eta[2])<0.4 && std_vector_jetGen_pt[2]>=0 && std_vector_puppijet_pt[2]>5 && std_vector_jetGen_pt[2]>%f ", pt_edges.at(ibin));
+   cut_standard  = Form ("((abs(std_vector_jetGen_phi[2]-std_vector_jet_phi[2])<3.1416)*abs(std_vector_jetGen_phi[2]-std_vector_jet_phi[2]) + (abs(std_vector_jetGen_phi[2]-std_vector_jet_phi[2])>3.1416)*(abs(std_vector_jetGen_phi[2]-std_vector_jet_phi[2])-3.1416))<0.4   &&  abs(std_vector_jetGen_eta[2]-std_vector_jet_eta[2])<0.4 && std_vector_jetGen_pt[2]>=0 && std_vector_jet_pt[2]>5 && std_vector_jetGen_pt[2]>%f ", pt_edges.at(ibin));
+  }
+  
+  //---- append to previous histogram
+  nameToDraw = Form ("std_vector_puppijet_pt[0] / std_vector_jetGen_pt[0] >> +histo_%d",ibin);
+  latino->Draw(nameToDraw.Data(), cut.Data(), "goff");
+  nameToDraw = Form ("std_vector_jet_pt[0] / std_vector_jetGen_pt[0] >> +histo_standard_%d",ibin);
+  latino->Draw(nameToDraw.Data(), cut_standard.Data(), "goff");
+  
+  
+  
+  
+  
+  
+  
   cc-> cd(ibin+1);
   histo[ibin]->Draw();  
   
