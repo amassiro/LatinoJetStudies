@@ -139,7 +139,7 @@ void JetResolution(){
 
 
  
- TCanvas* ccResult = new TCanvas ("ccResult","",800,800);
+ TCanvas* ccResult = new TCanvas ("ccResult","Response",800,800);
  gr_response->Draw("AP");
  gr_response->GetXaxis()->SetTitle("gen jet p_{T}");
  gr_response->GetYaxis()->SetTitle("jet p_{T} / gen jet p_{T}");
@@ -147,8 +147,73 @@ void JetResolution(){
  ccResult->SetGrid();
  
  
- //  latino->Draw("std_vector_jetGen_pt[0]", "std_vector_jetGen_pt[0]>=0");
-//  latino->Draw("std_vector_puppijet_pt[0] / std_vector_jetGen_pt[0]", "std_vector_jetGen_pt[0]>=0 && std_vector_puppijet_pt[0]>0");
-
+ 
+ 
+ 
+ 
+ 
+ //---- resolution
+ 
+ TGraphErrors* gr_resolution = new TGraphErrors();
+ for (int ibin = 0; ibin < pt_edges.size(); ibin++) {
+  float x;
+  float delta;
+  if (ibin!= (pt_edges.size()-1)) {
+   x     =  (pt_edges.at(ibin) + pt_edges.at(ibin+1)) / 2.;
+   delta = -(pt_edges.at(ibin) - pt_edges.at(ibin+1)) / 2.;
+  }
+  else {
+   x = (pt_edges.at(ibin)) ;
+   delta = 0;
+  }
+  float mean = histo[ibin]->GetMean();
+  float RMS  = histo[ibin]->GetRMS();
+  gr_resolution->SetPoint      (ibin, x, RMS/mean);
+  gr_resolution->SetPointError (ibin, delta, 0);
+  //   std::cout << " delta = " << delta << std::endl;
+ }
+ 
+ gr_resolution->SetMarkerSize(1);
+ gr_resolution->SetMarkerStyle(22);
+ gr_resolution->SetMarkerColor(kRed);
+ gr_resolution->SetLineColor(kRed);
+ 
+ 
+ 
+ TGraphErrors* gr_resolution_standard = new TGraphErrors();
+ for (int ibin = 0; ibin < pt_edges.size(); ibin++) {
+  float x;
+  float delta;
+  if (ibin!= (pt_edges.size()-1)) {
+   x     =  (pt_edges.at(ibin) + pt_edges.at(ibin+1)) / 2.;
+   delta = -(pt_edges.at(ibin) - pt_edges.at(ibin+1)) / 2.;
+  }
+  else {
+   x = (pt_edges.at(ibin)) ;
+   delta = 0;
+  }
+  float mean = histo_standard[ibin]->GetMean();
+  float RMS  = histo_standard[ibin]->GetRMS();
+  gr_resolution_standard->SetPoint      (ibin, x, RMS/mean);
+  gr_resolution_standard->SetPointError (ibin, delta, 0);
+  //   std::cout << " delta = " << delta << std::endl;
+ }
+ 
+ gr_resolution_standard->SetMarkerSize(1);
+ gr_resolution_standard->SetMarkerStyle(22);
+ gr_resolution_standard->SetMarkerColor(kBlue);
+ gr_resolution_standard->SetLineColor(kBlue);
+ 
+ 
+ 
+ TCanvas* ccResult_resolution = new TCanvas ("ccResult_resolution","Resolution",800,800);
+ gr_resolution->Draw("AP");
+ gr_resolution->GetXaxis()->SetTitle("gen jet p_{T}");
+ gr_resolution->GetYaxis()->SetTitle("resolution jet p_{T} / gen jet p_{T}");
+ gr_resolution_standard->Draw("P");
+ ccResult->SetGrid();
+ 
+ 
+ 
  
 }
