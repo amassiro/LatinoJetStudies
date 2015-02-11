@@ -241,7 +241,7 @@ void JetResolution(){
  
  TCanvas* ccResult = new TCanvas ("ccResult","Response",800,800);
  gr_response->Draw("AP");
- gr_response->GetXaxis()->SetTitle("gen jet p_{T}");
+ gr_response->GetXaxis()->SetTitle("gen jet p_{T} [GeV]");
  gr_response->GetYaxis()->SetTitle("jet p_{T} / gen jet p_{T}");
  gr_response_standard->Draw("P");
  ccResult->SetGrid();
@@ -250,7 +250,7 @@ void JetResolution(){
  
  TCanvas* ccResult_fit = new TCanvas ("ccResult_fit","Response fit",800,800);
  gr_response_fit->Draw("AP");
- gr_response_fit->GetXaxis()->SetTitle("gen jet p_{T}");
+ gr_response_fit->GetXaxis()->SetTitle("gen jet p_{T} [GeV]");
  gr_response_fit->GetYaxis()->SetTitle("jet p_{T} / gen jet p_{T}");
  gr_response_standard_fit->Draw("P");
  ccResult_fit->SetGrid();
@@ -342,7 +342,7 @@ void JetResolution(){
  
  TCanvas* ccResult_resolution = new TCanvas ("ccResult_resolution","Resolution",800,800);
  gr_resolution->Draw("AP");
- gr_resolution->GetXaxis()->SetTitle("gen jet p_{T}");
+ gr_resolution->GetXaxis()->SetTitle("gen jet p_{T} [GeV]");
  gr_resolution->GetYaxis()->SetTitle("resolution jet p_{T} / gen jet p_{T}");
  gr_resolution_standard->Draw("P");
  ccResult_resolution->SetGrid();
@@ -351,7 +351,7 @@ void JetResolution(){
  
  TCanvas* ccResult_resolution_fit = new TCanvas ("ccResult_resolution_fit","Resolution",800,800);
  gr_resolution_fit->Draw("AP");
- gr_resolution_fit->GetXaxis()->SetTitle("gen jet p_{T}");
+ gr_resolution_fit->GetXaxis()->SetTitle("gen jet p_{T} [GeV]");
  gr_resolution_fit->GetYaxis()->SetTitle("resolution fit jet p_{T} / gen jet p_{T}");
  gr_resolution_standard_fit->Draw("P");
  ccResult_resolution_fit->SetGrid();
