@@ -31,26 +31,20 @@ void JetRate(){
  pt_edges.push_back(300.0);
  
  
- 
- std::vector<float> fakerate;
- std::vector<float> fakerate_num;
- std::vector<float> fakerate_den;
- std::vector<float> efficiency;
- std::vector<float> efficiency_num;
- std::vector<float> efficiency_den;
- 
   
+ Float_t bins[1000];
  for (int ibin = 0; ibin < pt_edges.size(); ibin++) {
-  fakerate.push_back(0);
-  fakerate_num.push_back(0);
-  fakerate_den.push_back(0);
-  efficiency.push_back(0);
-  efficiency_num.push_back(0);
-  efficiency_den.push_back(0);
- } 
+  bins[ibin] = pt_edges.at(ibin);
+ }
+ bins[pt_edges.size()] = pt_edges.at(pt_edges.size()-1) + 100;
  
+ TH1F* histo_efficiency_standard = new TH1F("histo_efficiency_standard","efficiency standard", pt_edges.size(), bins);
+ TH1F* histo_efficiency_standard_num = new TH1F("histo_efficiency_standard_num","efficiency standard", pt_edges.size(), bins);
+ TH1F* histo_efficiency_standard_den = new TH1F("histo_efficiency_standard_den","efficiency standard", pt_edges.size(), bins);
  
- 
+ TH1F* histo_efficiency_puppi = new TH1F("histo_efficiency_puppi","efficiency puppi", pt_edges.size(), bins);
+ TH1F* histo_efficiency_puppi_num = new TH1F("histo_efficiency_puppi_num","efficiency puppi", pt_edges.size(), bins);
+ TH1F* histo_efficiency_puppi_den = new TH1F("histo_efficiency_puppi_den","efficiency puppi", pt_edges.size(), bins);
  
  
  
@@ -87,19 +81,41 @@ void JetRate(){
    latino->GetEntry(i);
    
    for (UInt_t j = 0; j < std_vector_jetGen_phi->size(); ++j) {
+    float pt_gen = std_vector_jetGen_pt->at(j);
+    if (pt_gen > pt_edges.at(pt_edges.size()-1)) { //---- to deal with overflow bin in "view" zone
+     pt_gen = pt_edges.at(pt_edges.size()-1)+0.5;
+    }
+    
+    histo_efficiency_standard_den->Fill(pt_gen);
     std::pair<int, float> closest_jet = getClosestIndexAndDR(std_vector_jetGen_eta->at(j), std_vector_jetGen_phi->at(j),    *std_vector_jet_eta, *std_vector_jet_phi);
     if (closest_jet.second < 0.4) {
+     histo_efficiency_standard_num->Fill(pt_gen);
 //      std::cout << " matched!" << std::endl;
     }
     
    }
   }
  
+ for (int ibin = 0; ibin <= pt_edges.size(); ibin++) {
+  float num = histo_efficiency_standard_num->GetBinContent(ibin+1);
+  float den = histo_efficiency_standard_den->GetBinContent(ibin+1);
+  float eff = 0.;
+  if (den != 0) eff = num / den;
+  histo_efficiency_standard->SetBinContent(ibin+1, eff);
+ }
+ 
+ histo_efficiency_standard->SetLineColor(kBlue);
+ histo_efficiency_standard->SetLineWidth(2);
+  
  
  
- 
- 
- 
+ TCanvas* ccResult_efficiency = new TCanvas ("ccResult_efficiency","efficiency",800,800);
+ histo_efficiency_standard->Draw();
+ histo_efficiency_standard->GetXaxis()->SetTitle("gen jet p_{T}");
+ histo_efficiency_standard->GetYaxis()->SetTitle("matching efficiency");
+ histo_efficiency_standard->GetYaxis()->SetRangeUser(0.0, 1.0);
+ ccResult_efficiency->SetGrid();
+ ccResult_efficiency->BuildLegend();
  
  
  
