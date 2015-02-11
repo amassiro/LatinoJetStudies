@@ -87,14 +87,20 @@ void JetRate(){
     }
     
     histo_efficiency_standard_den->Fill(pt_gen);
-    std::pair<int, float> closest_jet = getClosestIndexAndDR(std_vector_jetGen_eta->at(j), std_vector_jetGen_phi->at(j),    *std_vector_jet_eta, *std_vector_jet_phi);
-    if (closest_jet.second < 0.4) {
+    histo_efficiency_puppi_den->Fill(pt_gen);
+    
+    std::pair<int, float> closest_standard_jet = getClosestIndexAndDR(std_vector_jetGen_eta->at(j), std_vector_jetGen_phi->at(j),    *std_vector_jet_eta, *std_vector_jet_phi);
+    if (closest_standard_jet.second < 0.4) {
      histo_efficiency_standard_num->Fill(pt_gen);
-//      std::cout << " matched!" << std::endl;
+    }
+    std::pair<int, float> closest_puppi_jet = getClosestIndexAndDR(std_vector_jetGen_eta->at(j), std_vector_jetGen_phi->at(j),    *std_vector_puppijet_eta, *std_vector_puppijet_phi);
+    if (closest_puppi_jet.second < 0.4) {
+     histo_efficiency_puppi_num->Fill(pt_gen);
     }
     
    }
   }
+ 
  
  for (int ibin = 0; ibin <= pt_edges.size(); ibin++) {
   float num = histo_efficiency_standard_num->GetBinContent(ibin+1);
@@ -106,11 +112,24 @@ void JetRate(){
  
  histo_efficiency_standard->SetLineColor(kBlue);
  histo_efficiency_standard->SetLineWidth(2);
-  
+ 
+
+ for (int ibin = 0; ibin <= pt_edges.size(); ibin++) {
+  float num = histo_efficiency_puppi_num->GetBinContent(ibin+1);
+  float den = histo_efficiency_puppi_den->GetBinContent(ibin+1);
+  float eff = 0.;
+  if (den != 0) eff = num / den;
+  histo_efficiency_puppi->SetBinContent(ibin+1, eff);
+ }
+ 
+ histo_efficiency_puppi->SetLineColor(kRed);
+ histo_efficiency_puppi->SetLineWidth(2);
+ 
  
  
  TCanvas* ccResult_efficiency = new TCanvas ("ccResult_efficiency","efficiency",800,800);
  histo_efficiency_standard->Draw();
+ histo_efficiency_puppi->Draw("same");
  histo_efficiency_standard->GetXaxis()->SetTitle("gen jet p_{T}");
  histo_efficiency_standard->GetYaxis()->SetTitle("matching efficiency");
  histo_efficiency_standard->GetYaxis()->SetRangeUser(0.0, 1.0);
