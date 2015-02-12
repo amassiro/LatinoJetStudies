@@ -108,34 +108,30 @@ void JetResolutionMatch(){
   for (UInt_t j = 0; j < std_vector_jetGen_phi->size(); ++j) {
    
    float pt_gen = std_vector_jetGen_pt->at(j);
-   int iGenPtBin = 0;
+   int iGenPtBin = -1;
    for (int ibin = 0; ibin < pt_edges.size(); ibin++) {
     if (ibin != (pt_edges.size()-1)) {
-     if (pt_gen < pt_edges.at(ibin+1)) {
+     if (pt_gen >= pt_edges.at(ibin) && pt_gen < pt_edges.at(ibin+1)) {
       iGenPtBin = ibin;
       break;
      }
     }
     else {
-     if (pt_gen > pt_edges.at(ibin)) {
+     if (pt_gen >= pt_edges.at(ibin)) {
       iGenPtBin = ibin;
-      break;
      }
     } 
    }
    
-   
-   if (pt_gen > pt_edges.at(pt_edges.size()-1)) { //---- to deal with overflow bin in "view" zone
-    pt_gen = pt_edges.at(pt_edges.size()-1)+0.5;
-   }
-      
-   std::pair<int, float> closest_standard_jet = getClosestIndexAndDR(std_vector_jetGen_eta->at(j), std_vector_jetGen_phi->at(j),    *std_vector_jet_eta, *std_vector_jet_phi);
-   if (closest_standard_jet.second < 0.4) {
-    histo_standard[iGenPtBin]->Fill(std_vector_jet_pt->at(closest_standard_jet.first) / std_vector_jetGen_pt->at(j));
-   }
-   std::pair<int, float> closest_puppi_jet = getClosestIndexAndDR(std_vector_jetGen_eta->at(j), std_vector_jetGen_phi->at(j),    *std_vector_puppijet_eta, *std_vector_puppijet_phi);
-   if (closest_puppi_jet.second < 0.4) {
-    histo[iGenPtBin]->Fill(std_vector_puppijet_pt->at(closest_puppi_jet.first) / std_vector_jetGen_pt->at(j));
+   if (iGenPtBin != -1) {
+    std::pair<int, float> closest_standard_jet = getClosestIndexAndDR(std_vector_jetGen_eta->at(j), std_vector_jetGen_phi->at(j),    *std_vector_jet_eta, *std_vector_jet_phi);
+    if (closest_standard_jet.second < 0.4) {
+     histo_standard[iGenPtBin]->Fill(std_vector_jet_pt->at(closest_standard_jet.first) / std_vector_jetGen_pt->at(j));
+    }
+    std::pair<int, float> closest_puppi_jet = getClosestIndexAndDR(std_vector_jetGen_eta->at(j), std_vector_jetGen_phi->at(j),    *std_vector_puppijet_eta, *std_vector_puppijet_phi);
+    if (closest_puppi_jet.second < 0.4) {
+     histo[iGenPtBin]->Fill(std_vector_puppijet_pt->at(closest_puppi_jet.first) / std_vector_jetGen_pt->at(j));
+    }
    }
    
   } 
