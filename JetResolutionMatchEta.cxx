@@ -65,7 +65,10 @@ void JetResolutionMatchEta(){
    
    
    name = Form ("fit_histo_%d_%d",ibineta,ibinpt);
-   if      (ibinpt == 2) fit_histo[ibineta][ibinpt] = new TF1 (name.Data(),"gaus(0)+pol2(3)",0.3,1.5);
+   if      (ibinpt == 2) {
+    fit_histo[ibineta][ibinpt] = new TF1 (name.Data(),"gaus(0)+pol2(3)",0.3,1.2);
+    fit_histo[ibineta][ibinpt]->SetParameter(3,0.1);
+   }
    else if (ibinpt == 1) fit_histo[ibineta][ibinpt] = new TF1 (name.Data(),"gaus(0)+pol2(3)",0.3,1.5);
    else             fit_histo[ibineta][ibinpt] = new TF1 (name.Data(),"gaus(0)+pol2(3)",0.3,2.0);
    //    if      (ibinpt <= 1) fit_histo[ibineta][ibinpt] = new TF1 (name.Data(),"gaus(0)+pol2(3)",0.2,3.0);
@@ -73,6 +76,7 @@ void JetResolutionMatchEta(){
 //    else                fit_histo[ibineta][ibinpt] = new TF1 (name.Data(),"gaus(0)+pol2(3)",0.2,1.5);
    fit_histo[ibineta][ibinpt]->SetParameter(1,1.0);
    fit_histo[ibineta][ibinpt]->SetParameter(2,0.5);
+
    
    name = Form ("fit_histo_standard_%d_%d",ibineta,ibinpt);
    if (ibinpt == 2) fit_histo_standard[ibineta][ibinpt] = new TF1 (name.Data(),"gaus(0)+pol2(3)",0.5,1.5);
