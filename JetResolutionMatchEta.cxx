@@ -19,14 +19,21 @@ void JetResolutionMatchEta(){
  
  std::vector<float> pt_edges;
  
- pt_edges.push_back(5.0);
- pt_edges.push_back(20.0);
+//  pt_edges.push_back(5.0);
+//  pt_edges.push_back(20.0);
+//  pt_edges.push_back(30.0);
+//  pt_edges.push_back(40.0);
+//  pt_edges.push_back(50.0);
+//  pt_edges.push_back(100.0);
+//  pt_edges.push_back(200.0);
+//  pt_edges.push_back(300.0);
+
+ pt_edges.push_back(10.0);
  pt_edges.push_back(30.0);
- pt_edges.push_back(40.0);
  pt_edges.push_back(50.0);
+ pt_edges.push_back(75.0);
  pt_edges.push_back(100.0);
- pt_edges.push_back(200.0);
- pt_edges.push_back(300.0);
+ 
  
  TH1F* histo_standard[100][100];
  TH1F* histo[100][100];
@@ -58,17 +65,22 @@ void JetResolutionMatchEta(){
    
    
    name = Form ("fit_histo_%d_%d",ibineta,ibinpt);
-   if      (ibinpt <= 1) fit_histo[ibineta][ibinpt] = new TF1 (name.Data(),"gaus(0)+pol2(3)",0.2,3.0);
-   else if (ibinpt == 3) fit_histo[ibineta][ibinpt] = new TF1 (name.Data(),"gaus(0)+pol2(3)",0.3,1.4);
-   else                fit_histo[ibineta][ibinpt] = new TF1 (name.Data(),"gaus(0)+pol2(3)",0.2,1.5);
+   if      (ibinpt == 2) fit_histo[ibineta][ibinpt] = new TF1 (name.Data(),"gaus(0)+pol2(3)",0.3,1.5);
+   else if (ibinpt == 1) fit_histo[ibineta][ibinpt] = new TF1 (name.Data(),"gaus(0)+pol2(3)",0.3,1.5);
+   else             fit_histo[ibineta][ibinpt] = new TF1 (name.Data(),"gaus(0)+pol2(3)",0.3,2.0);
+   //    if      (ibinpt <= 1) fit_histo[ibineta][ibinpt] = new TF1 (name.Data(),"gaus(0)+pol2(3)",0.2,3.0);
+//    else if (ibinpt == 3) fit_histo[ibineta][ibinpt] = new TF1 (name.Data(),"gaus(0)+pol2(3)",0.3,1.4);
+//    else                fit_histo[ibineta][ibinpt] = new TF1 (name.Data(),"gaus(0)+pol2(3)",0.2,1.5);
    fit_histo[ibineta][ibinpt]->SetParameter(1,1.0);
    fit_histo[ibineta][ibinpt]->SetParameter(2,0.5);
    
    name = Form ("fit_histo_standard_%d_%d",ibineta,ibinpt);
-   if      (ibinpt <= 1) fit_histo_standard[ibineta][ibinpt] = new TF1 (name.Data(),"gaus+pol2(3)",0.2,3.0);
-   else if (ibinpt == 2) fit_histo_standard[ibineta][ibinpt] = new TF1 (name.Data(),"gaus(0)+pol2(3)",0.5,1.7);
-   else if (ibinpt == 3) fit_histo_standard[ibineta][ibinpt] = new TF1 (name.Data(),"gaus(0)+pol2(3)",0.3,1.4);
-   else                fit_histo_standard[ibineta][ibinpt] = new TF1 (name.Data(),"gaus+pol2(3)",0.2,1.5);
+   if (ibinpt == 2) fit_histo_standard[ibineta][ibinpt] = new TF1 (name.Data(),"gaus(0)+pol2(3)",0.5,1.5);
+   else             fit_histo_standard[ibineta][ibinpt] = new TF1 (name.Data(),"gaus+pol2(3)",0.3,2.0);
+//    if      (ibinpt <= 1) fit_histo_standard[ibineta][ibinpt] = new TF1 (name.Data(),"gaus+pol2(3)",0.2,3.0);
+//    else if (ibinpt == 2) fit_histo_standard[ibineta][ibinpt] = new TF1 (name.Data(),"gaus(0)+pol2(3)",0.5,1.7);
+//    else if (ibinpt == 3) fit_histo_standard[ibineta][ibinpt] = new TF1 (name.Data(),"gaus(0)+pol2(3)",0.3,1.4);
+//    else                fit_histo_standard[ibineta][ibinpt] = new TF1 (name.Data(),"gaus+pol2(3)",0.2,1.5);
    fit_histo_standard[ibineta][ibinpt]->SetParameter(1,1.0);
    fit_histo_standard[ibineta][ibinpt]->SetParameter(2,0.5);
    
@@ -83,11 +95,11 @@ void JetResolutionMatchEta(){
  for (int ibineta = 0; ibineta < (eta_edges.size()-1); ibineta++) {
   name = Form ("cc_standard_%d",ibineta);
   cc_standard[ibineta] = new TCanvas (name.Data(),name.Data(),800,800);
-  cc_standard[ibineta]->Divide(4,4);
+  cc_standard[ibineta]->Divide(3,3);
  
   name = Form ("cc_puppi_%d",ibineta);
   cc[ibineta] = new TCanvas (name.Data(),name.Data(),800,800);
-  cc[ibineta]->Divide(4,4);
+  cc[ibineta]->Divide(3,3);
  }
  
  
@@ -183,10 +195,12 @@ void JetResolutionMatchEta(){
    name = Form ("fit_histo_%d_%d",ibineta,ibinpt);
    histo[ibineta][ibinpt]->Fit(name.Data(),"RMQ");
    histo[ibineta][ibinpt]->Fit(name.Data(),"RMQ");
+   histo[ibineta][ibinpt]->Fit(name.Data(),"RMQ");
    
    cc_standard[ibineta]-> cd(ibinpt+1);
    histo_standard[ibineta][ibinpt]->Draw();  
    name = Form ("fit_histo_standard_%d_%d",ibineta,ibinpt);
+   histo_standard[ibineta][ibinpt]->Fit(name.Data(),"RMQ");
    histo_standard[ibineta][ibinpt]->Fit(name.Data(),"RMQ");
    histo_standard[ibineta][ibinpt]->Fit(name.Data(),"RMQ");
    
