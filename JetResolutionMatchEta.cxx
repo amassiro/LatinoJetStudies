@@ -325,7 +325,7 @@ void JetResolutionMatchEta(){
   gr_response_fit[ibineta]->GetYaxis()->SetTitle("jet p_{T} / gen jet p_{T}");
   gr_response_standard_fit[ibineta]->Draw("P");
   gPad->SetGrid();
-  gPad->SetLogx();
+//   gPad->SetLogx();
   gPad->BuildLegend();
   
  }
@@ -447,7 +447,7 @@ void JetResolutionMatchEta(){
   gr_resolution_fit[ibineta]->GetYaxis()->SetTitle("resolution fit jet p_{T} / gen jet p_{T}");
   gr_resolution_standard_fit[ibineta]->Draw("P");
   gPad->SetGrid();
-  gPad->SetLogx();
+//   gPad->SetLogx();
   gPad->BuildLegend();
   
  }
