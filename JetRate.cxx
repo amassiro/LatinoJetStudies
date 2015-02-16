@@ -27,7 +27,9 @@ void JetRate(){
  pt_edges.push_back(40.0);
  pt_edges.push_back(50.0);
  pt_edges.push_back(100.0);
+ pt_edges.push_back(150.0);
  pt_edges.push_back(200.0);
+ pt_edges.push_back(250.0);
  pt_edges.push_back(300.0);
  
  
@@ -90,7 +92,6 @@ void JetRate(){
     float pt_gen = std_vector_jetGen_pt->at(j);
     if (pt_gen > pt_edges.at(pt_edges.size()-1)) { //---- to deal with overflow bin in "view" zone
      pt_gen = pt_edges.at(pt_edges.size()-1)+0.5;
-     std::cout << " pt_gen = " << pt_gen << std::endl;
     }
     
     histo_efficiency_standard_den->Fill(pt_gen);
@@ -113,12 +114,16 @@ void JetRate(){
     float pt_gen = std_vector_jet_pt->at(j);
     if (pt_gen > pt_edges.at(pt_edges.size()-1)) { //---- to deal with overflow bin in "view" zone
      pt_gen = pt_edges.at(pt_edges.size()-1)+0.5;
+//      std::cout << " pt_gen = " << pt_gen << std::endl;
     }
     
     std::pair<int, float> closest_standard_jet = getClosestIndexAndDR(std_vector_jet_eta->at(j), std_vector_jet_phi->at(j),    *std_vector_jetGen_eta, *std_vector_jetGen_phi);
     if (closest_standard_jet.second > 0.4) {
      histo_fake_standard->Fill(pt_gen);
     }    
+//     else {
+//      std::cout << " closest_standard_jet.second = " << closest_standard_jet.second << std::endl;
+//     }
    }
    
    
@@ -191,7 +196,7 @@ void JetRate(){
  histo_efficiency_standard_over_puppi->Draw();
  histo_efficiency_standard_over_puppi->GetXaxis()->SetTitle("reco jet p_{T} [GeV]");
  histo_efficiency_standard_over_puppi->GetYaxis()->SetTitle("puppi / standard efficiency");
- histo_efficiency_standard_over_puppi->GetYaxis()->SetRangeUser(0.0, 10.0);
+ histo_efficiency_standard_over_puppi->GetYaxis()->SetRangeUser(0.0, 2.0);
  
  gPad->SetGrid();
  

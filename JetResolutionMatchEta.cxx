@@ -51,12 +51,13 @@ void JetResolutionMatchEta(){
  
   
  for (int ibinpt = 0; ibinpt < pt_edges.size(); ibinpt++) {
+  TString cut;
+  if (ibinpt != (pt_edges.size()-1)) cut = Form ("pt [%f, %f]", pt_edges.at(ibinpt), pt_edges.at(ibinpt+1) );
+  else                             cut = Form ("pt [%f, -]",  pt_edges.at(ibinpt) ); 
+  
   for (int ibineta = 0; ibineta < (eta_edges.size()-1); ibineta++) {
    
-   TString cut;
-   if (ibinpt != (pt_edges.size()-1)) cut = Form ("pt [%f, %f]", pt_edges.at(ibinpt), pt_edges.at(ibinpt+1) );
-   else                             cut = Form ("pt [%f, -]",  pt_edges.at(ibinpt) ); 
-   
+     
    name = Form ("histo_%d_%d",ibineta,ibinpt);
    histo[ibineta][ibinpt] = new TH1F (name.Data(),cut.Data(),100,0,3);
    

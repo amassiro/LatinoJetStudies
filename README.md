@@ -14,6 +14,7 @@ run
     r00t JetResolution.cxx
     r00t JetResolutionMatch.cxx
     r00t JetRate.cxx
+    r00t JetRateEta.cxx
     r00t JetResolutionMatchEta.cxx
     
     
