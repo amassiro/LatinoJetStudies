@@ -194,8 +194,8 @@ void JetRate(){
  histo_efficiency_standard_over_puppi->SetLineColor(kGreen+2);
  histo_efficiency_standard_over_puppi->SetLineWidth(2);
  histo_efficiency_standard_over_puppi->Draw();
- histo_efficiency_standard_over_puppi->GetXaxis()->SetTitle("reco jet p_{T} [GeV]");
- histo_efficiency_standard_over_puppi->GetYaxis()->SetTitle("puppi / standard efficiency");
+ histo_efficiency_standard_over_puppi->GetXaxis()->SetTitle("gen jet p_{T} [GeV]");
+ histo_efficiency_standard_over_puppi->GetYaxis()->SetTitle("standard / puppi efficiency");
  histo_efficiency_standard_over_puppi->GetYaxis()->SetRangeUser(0.0, 2.0);
  
  gPad->SetGrid();
@@ -237,7 +237,7 @@ void JetRate(){
  histo_fake_standard_over_puppi->SetLineWidth(2);
  histo_fake_standard_over_puppi->Draw();
  histo_fake_standard_over_puppi->GetXaxis()->SetTitle("reco jet p_{T} [GeV]");
- histo_fake_standard_over_puppi->GetYaxis()->SetTitle("puppi / standard fake");
+ histo_fake_standard_over_puppi->GetYaxis()->SetTitle("standard / puppi fake");
  histo_fake_standard_over_puppi->GetYaxis()->SetRangeUser(0.0, 10.0);
  
  gPad->SetGrid();

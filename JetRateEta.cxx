@@ -19,17 +19,24 @@ void JetRateEta(){
  
  
  std::vector<float> pt_edges;
- 
- pt_edges.push_back(5.0);
+ pt_edges.push_back(10.0);
  pt_edges.push_back(20.0);
  pt_edges.push_back(30.0);
- pt_edges.push_back(40.0);
  pt_edges.push_back(50.0);
+ pt_edges.push_back(75.0);
  pt_edges.push_back(100.0);
- pt_edges.push_back(150.0);
  pt_edges.push_back(200.0);
- pt_edges.push_back(250.0);
- pt_edges.push_back(300.0);
+ 
+//  pt_edges.push_back(5.0);
+//  pt_edges.push_back(20.0);
+//  pt_edges.push_back(30.0);
+//  pt_edges.push_back(40.0);
+//  pt_edges.push_back(50.0);
+//  pt_edges.push_back(100.0);
+//  pt_edges.push_back(150.0);
+//  pt_edges.push_back(200.0);
+//  pt_edges.push_back(250.0);
+//  pt_edges.push_back(300.0);
  
  
  
@@ -281,9 +288,9 @@ void JetRateEta(){
   histo_efficiency_standard_over_puppi[ibineta]->SetLineColor(kGreen+2);
   histo_efficiency_standard_over_puppi[ibineta]->SetLineWidth(2);
   histo_efficiency_standard_over_puppi[ibineta]->Draw();
-  histo_efficiency_standard_over_puppi[ibineta]->GetXaxis()->SetTitle("reco jet p_{T} [GeV]");
-  histo_efficiency_standard_over_puppi[ibineta]->GetYaxis()->SetTitle("puppi / standard efficiency");
-  histo_efficiency_standard_over_puppi[ibineta]->GetYaxis()->SetRangeUser(0.0, 2.0);
+  histo_efficiency_standard_over_puppi[ibineta]->GetXaxis()->SetTitle("gen jet p_{T} [GeV]");
+  histo_efficiency_standard_over_puppi[ibineta]->GetYaxis()->SetTitle("standard / puppi efficiency");
+  histo_efficiency_standard_over_puppi[ibineta]->GetYaxis()->SetRangeUser(0.0, 3.0);
   
   gPad->SetGrid();
   
@@ -325,7 +332,7 @@ void JetRateEta(){
   histo_fake_standard_over_puppi[ibineta]->SetLineWidth(2);
   histo_fake_standard_over_puppi[ibineta]->Draw();
   histo_fake_standard_over_puppi[ibineta]->GetXaxis()->SetTitle("reco jet p_{T} [GeV]");
-  histo_fake_standard_over_puppi[ibineta]->GetYaxis()->SetTitle("puppi / standard fake");
+  histo_fake_standard_over_puppi[ibineta]->GetYaxis()->SetTitle("standard / puppi fake");
   histo_fake_standard_over_puppi[ibineta]->GetYaxis()->SetRangeUser(0.0, 10.0);
   
   gPad->SetGrid();
