@@ -46,6 +46,10 @@ void JetResolutionMatchEta(){
  TCanvas* cc_standard[100];
  TCanvas* cc[100];
  
+ TCanvas* cc_summary_standard;
+ TCanvas* cc_summary;
+ 
+ 
  
  Float_t bins[1000];
  
@@ -106,6 +110,10 @@ void JetResolutionMatchEta(){
   cc[ibineta] = new TCanvas (name.Data(),name.Data(),800,800);
   cc[ibineta]->Divide(3,3);
  }
+ 
+ cc_summary_standard = new TCanvas ("cc_summary_standard","standard",800,800);
+ cc_summary          = new TCanvas ("cc_summary",         "puppi",   800,800);
+ 
  
  
  bins[pt_edges.size()] = pt_edges.at(pt_edges.size()-1) + 100;
@@ -368,13 +376,13 @@ void JetResolutionMatchEta(){
   
   gr_resolution[ibineta]->SetFillColor(0);
   gr_resolution[ibineta]->SetMarkerSize(1);
-  gr_resolution[ibineta]->SetMarkerStyle(22);
+  gr_resolution[ibineta]->SetMarkerStyle(22+ibineta);
   gr_resolution[ibineta]->SetMarkerColor(kRed);
   gr_resolution[ibineta]->SetLineColor(kRed);
   
   gr_resolution_fit[ibineta]->SetFillColor(0);
   gr_resolution_fit[ibineta]->SetMarkerSize(1);
-  gr_resolution_fit[ibineta]->SetMarkerStyle(24);
+  gr_resolution_fit[ibineta]->SetMarkerStyle(24+ibineta);
   gr_resolution_fit[ibineta]->SetMarkerColor(kRed);
   gr_resolution_fit[ibineta]->SetLineColor(kRed);
  }
@@ -411,13 +419,13 @@ void JetResolutionMatchEta(){
   
   gr_resolution_standard[ibineta]->SetFillColor(0);
   gr_resolution_standard[ibineta]->SetMarkerSize(1);
-  gr_resolution_standard[ibineta]->SetMarkerStyle(22);
+  gr_resolution_standard[ibineta]->SetMarkerStyle(22+ibineta);
   gr_resolution_standard[ibineta]->SetMarkerColor(kBlue);
   gr_resolution_standard[ibineta]->SetLineColor(kBlue);
   
   gr_resolution_standard_fit[ibineta]->SetFillColor(0);
   gr_resolution_standard_fit[ibineta]->SetMarkerSize(1);
-  gr_resolution_standard_fit[ibineta]->SetMarkerStyle(24);
+  gr_resolution_standard_fit[ibineta]->SetMarkerStyle(24+ibineta);
   gr_resolution_standard_fit[ibineta]->SetMarkerColor(kBlue);
   gr_resolution_standard_fit[ibineta]->SetLineColor(kBlue);
  }
@@ -454,7 +462,42 @@ void JetResolutionMatchEta(){
  }
  
  
+ TLegend* leg_summary_standard = new TLegend(0.1,0.7,0.48,0.9);
+ 
+ cc_summary_standard->cd();
+ for (int ibineta = 0; ibineta < (eta_edges.size()-1); ibineta++) {
+  gr_resolution_standard_fit[ibineta]->SetMarkerColor(kBlue+ibineta); 
+  gr_resolution_standard_fit[ibineta]->SetLineColor(kBlue+ibineta); 
+  if (ibineta == 0) gr_resolution_standard_fit[ibineta]->Draw("AP");
+  else              gr_resolution_standard_fit[ibineta]->Draw("P");
+  gr_resolution_standard_fit[ibineta]->GetYaxis()->SetRangeUser(0.0,0.6);
+  gr_resolution_standard_fit[ibineta]->GetXaxis()->SetTitle("gen jet p_{T} [GeV]");
+  gr_resolution_standard_fit[ibineta]->GetYaxis()->SetTitle("resolution jet p_{T} / gen jet p_{T}");
+  name = Form ("#eta [%f, %f]", eta_edges.at(ibineta), eta_edges.at(ibineta+1) );
+  leg_summary_standard->AddEntry(gr_resolution_standard_fit[ibineta],name.Data(),"lep");  
+ }
+ leg_summary_standard->Draw(); 
+ cc_summary_standard->SetGrid();
 
+
+ TLegend* leg_summary = new TLegend(0.5,0.7,0.9,0.9);
+ 
+ cc_summary->cd();
+ for (int ibineta = 0; ibineta < (eta_edges.size()-1); ibineta++) { 
+  gr_resolution_fit[ibineta]->SetMarkerColor(kRed+ibineta);
+  gr_resolution_fit[ibineta]->SetLineColor(kRed+ibineta);
+  if (ibineta == 0) gr_resolution_fit[ibineta]->Draw("AP");
+  else              gr_resolution_fit[ibineta]->Draw("P");
+  gr_resolution_fit[ibineta]->GetYaxis()->SetRangeUser(0.0,0.6);
+  gr_resolution_fit[ibineta]->GetXaxis()->SetTitle("gen jet p_{T} [GeV]");
+  gr_resolution_fit[ibineta]->GetYaxis()->SetTitle("resolution jet p_{T} / gen jet p_{T}");
+  name = Form ("#eta [%f, %f]", eta_edges.at(ibineta), eta_edges.at(ibineta+1) );
+  leg_summary->AddEntry(gr_resolution_fit[ibineta],name.Data(),"lep");
+  
+ }
+ leg_summary->Draw(); 
+ cc_summary->SetGrid();
+ 
  
  
 }
