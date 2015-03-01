@@ -17,8 +17,6 @@ run
     r00t JetRate.cxx
     r00t JetRateEta.cxx
     r00t JetResolutionMatchEta.cxx
-    
-    
 
 where:
 
