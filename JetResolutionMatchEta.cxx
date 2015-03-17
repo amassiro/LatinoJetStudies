@@ -482,4 +482,15 @@ void JetResolutionMatchEta(){
  
  
  
+ cc_summary_standard->SaveAs("summary_standard.png");
+ cc_summary         ->SaveAs("summary_puppi.png");
+ 
+ 
+ for (int ibineta = 0; ibineta < (eta_edges.size()-1); ibineta++) {
+  name = Form ("puppi_eta_%f_%f.png", eta_edges.at(ibineta), eta_edges.at(ibineta+1) ); 
+  cc[ibineta]-> SaveAs(name.Data());
+  name = Form ("eta_%f_%f.png", eta_edges.at(ibineta), eta_edges.at(ibineta+1) );
+  cc_standard[ibineta]-> SaveAs(name.Data());  
+ }
+ 
 }
